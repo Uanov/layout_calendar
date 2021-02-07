@@ -1,0 +1,14 @@
+@mixin one-cell {
+  flex-basis: $cell-size;
+  height: $cell-size;
+  background: $cell-background;
+  border: 1px solid black;
+  margin-right: $cell-margin;
+  margin-bottom: $cell-margin;
+  font-family: $date-font-family;
+  font-size: $date-font-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  width: (($cell-size + $cell-margin) * 7) + ($cell-size /2);
+
+  div {
+    transition: $transition-speed;
+  }
+
+  div:hover {
+    transform: translate(0 , -20px);
+    background-color: pink;
+  }
+}
+
+@for $i from 28 through 31 {
+  .calendar-#{$i} {
+    @for $j from 1 through $i {
+      & :nth-child(#{$j}) {
+        @include one-cell;
+      }
+
+      & :nth-child(#{$j})::after {
+        content: "#{$j}";
+      }
+    }
+  }
+}
+
+@each $day, $indent in $days {
+  .calendar-#{$day} div:first-child {
+    margin-left: ($cell-size + $cell-margin)  * $indent;
+  }
+}
