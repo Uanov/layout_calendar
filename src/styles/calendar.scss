@@ -1,8 +1,5 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  text-align: center;
 }
 
 body {
@@ -11,6 +8,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  margin: 0;
 }
 
 .calendar {
@@ -18,7 +16,9 @@ body {
   flex-wrap: wrap;
   width: (($cell-size + $cell-margin) * 7) + ($cell-size /2);
 
+  //Стилизую напрямую по условиям задачи (не изменять HTML)
   div {
+    @include one-cell;
     transition: $transition-speed;
   }
 
@@ -31,10 +31,6 @@ body {
 @for $i from 28 through 31 {
   .calendar-#{$i} {
     @for $j from 1 through $i {
-      & :nth-child(#{$j}) {
-        @include one-cell;
-      }
-
       & :nth-child(#{$j})::after {
         content: "#{$j}";
       }
